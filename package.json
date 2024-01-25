@@ -13,14 +13,14 @@
   },
   "dependencies": {
     "cross-env": "^7.0.3",
-    "husky": "^9.0.3",
+    "husky": "^9.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint && npm test",
-      "pre-push": "npm run lint && npm test"
+      "pre-commit": "yarn lint && yarn test",
+      "pre-push": "yarn lint && yarn test"
     }
   },
   "devDependencies": {

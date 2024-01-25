@@ -1425,10 +1425,10 @@ hasown@^2.0.0:
   dependencies:
     function-bind "^1.1.2"
 
-husky@^9.0.3:
-  version "9.0.3"
-  resolved "https://registry.yarnpkg.com/husky/-/husky-9.0.3.tgz#26bf3f7597fc977589c82c16c680e9320b9fcf5b"
-  integrity sha512-MNRluWx5bvZ2Ft2Z9ni5KZAgNFrQSM4LKvEtTJVKTjGRqliI1CeWv8HWnPXfM+4snOaU04bb7IU2u6TPDb8ROw==
+husky@^9.0.4:
+  version "9.0.4"
+  resolved "https://registry.yarnpkg.com/husky/-/husky-9.0.4.tgz#e81d4d25a3dd2ca85667ca3d9b46eb264ff32928"
+  integrity sha512-V3C/ksKcegckemdA20SxPC8x5OE2kVmiICCtChUCmaIKKF7mriBZIQd/7+cfyWkilI1OE1P8XlpMdOQE+IIcQA==
 
 ignore@^5.2.0, ignore@^5.2.4:
   version "5.3.0"
