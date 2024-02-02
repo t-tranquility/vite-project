@@ -1,0 +1,82 @@
+.wrapper-game-card{
+    height: fit-content;
+    width: 70%;
+    background-color: #ffe1b78a;
+    border-radius: 20px;
+    border: 1px solid #ffd498;
+    color:#5b3f18;
+    font-size: 24px;
+    font-family: 'Nunito';
+    font-weight: 500;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px 0px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    .header_name-game-card{
+        font-size: 32px;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+    .header_description-game-card{
+        font-size: 24px;
+    }
+    .header-game-card-left{
+        width: 80%;
+        margin: 0px 10px;
+        text-align: left;
+    }
+    .header-game-card-right{
+        width: 20%;
+        text-align: right;
+        font-size: 13px;
+    }
+    .header-game-card{
+        display: flex;
+        padding: 0px 30px;
+        justify-content: space-between;
+    }
+    .content-game-card{
+        font-family: 'Times New Roman', Times, serif;
+        display: flex;
+        font-size: 14px;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: 20px 0px;
+    }
+    button{
+        p{
+            margin: 0
+        }
+        color: rgb(0, 0, 0);
+        text-transform: capitalize;
+
+        font-size: 24px;
+        font-family: 'Nunito';
+        font-weight: 500;
+
+        position: fixed;
+        right: 50px;
+        bottom: 30px;
+        background-color: transparent;
+        opacity: 0.5;
+
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        &:hover {
+            opacity: 0.8;
+            transform: translateY(-1px);
+          }
+    }
+}
+.i{
+    position: fixed;
+    right: 10px;
+    top: 20px;
+    font-size: 32px;
+}

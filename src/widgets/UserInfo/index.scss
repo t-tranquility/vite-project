@@ -1,0 +1,23 @@
+.user-info-card{
+    position: fixed;
+    right: 0px;
+    top: -10px;
+    p{
+        color: #5b3f18;
+        font-family: 'Nunito';
+        font-size: 32px;
+        font-weight: 700;
+        text-align: center;
+        margin: 5px 0px 0px 10px;
+    }
+    .info-wrapper{
+        position: fixed;
+        top: 45px;
+        right: 50px;
+        display: flex;
+        align-items: center;
+        align-content: space-evenly;
+        justify-content: center;
+        width: 100px;
+    }
+}

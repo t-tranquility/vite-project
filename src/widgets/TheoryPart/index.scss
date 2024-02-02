@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@100;200;300;500;600;700;800&display=swap');
+
+.wrapper-theorypart{
+    display: flex;
+    .teacher-img{
+        position: fixed;
+        left: 0px;
+        bottom: 0px;
+    }
+    .theory-card{
+        position: fixed;
+        top: 70px;
+        left: 350px;
+        width: 900px;
+        height: fit-content;
+        background-color: #ffe1b78a;
+        border-radius: 20px;
+        border: 1px solid #ffd498;
+        color:#5b3f18;
+        font-size: 32px;
+        font-family: 'Nunito';
+        font-weight: 500;
+        text-align: center;
+        padding: 20px 10px;
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(10px);
+        button{
+            p{
+                margin: 0
+            }
+            color: rgb(0, 0, 0);
+            text-transform: capitalize;
+    
+            font-size: 24px;
+            font-family: 'Nunito';
+            font-weight: 500;
+    
+            position: fixed;
+            right: 50px;
+            bottom: 30px;
+            background-color: transparent;
+            opacity: 0.5;
+    
+            display: flex;
+            align-items: center;
+            gap: 12px;
+    
+            &:hover {
+                opacity: 0.8;
+                transform: translateY(-1px);
+              }
+        }
+    }
+}

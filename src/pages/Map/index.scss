@@ -1,0 +1,37 @@
+.map-background{
+	width: 100vw;
+  	height: 100vh;
+	background-image: url('../../assets/map_background.png');
+    background: color #000;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+.atmBtn, .insurBtn, .curBtn, .houseBtn{
+	width: 220px;
+	height: 220px;
+}
+
+.wrapper-map {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: repeat(3, 1fr);
+	grid-column-gap: 0px;
+	grid-row-gap: 0px;
+	justify-items: center;
+  	align-items: center;
+  	width: 100vw;
+  	height: 100vh;
+	padding: 20px;
+	}
+
+.insurBtn { grid-area: 1 / 1 / 2 / 2; }
+.atmBtn { grid-area: 1 / 3 / 2 / 4; }
+.bankBtn { grid-area: 2 / 2 / 3 / 3; }
+.houseBtn { grid-area: 3 / 1 / 4 / 2; }
+.curBtn { grid-area: 3 / 3 / 4 / 4; }
+
+.lolo{
+	z-index: 10;
+}
