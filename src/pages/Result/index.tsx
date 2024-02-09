@@ -1,13 +1,9 @@
-import './index.scss';
-import ResultCard from '../../widgets/ResultCard';
-function Result() {
+import '../styles/index.scss';
+import { ResultCard } from '../../widgets/ResultCard';
+export function Result() {
   return (
-    <>
-      <div className='greeting-background'>
-        <ResultCard />
-      </div>
-    </>
+    <div className='bank-background'>
+      <ResultCard />
+    </div>
   );
 }
-
-export default Result;

@@ -14,24 +14,41 @@
     }
     .noBtn{
         position: absolute;
-        top:72px;
+        top:55px;
         left:5px;
         cursor: pointer;
         border-radius: 100%;
         opacity: 1;
+        background-color: transparent;
         &:hover {  
-            opacity: 1;  
+            opacity: 1; 
           }        
+
     }
     .yesBtn{
         position: absolute;
-        top:72px;
+        top:55px;
         left:151px;
         cursor: pointer;
         border-radius: 100%;
         opacity: 1;
+        background-color: transparent;
         &:hover {  
             opacity: 1;  
           }     
     }    
+    .noBtnActive{
+        position: absolute;
+        top:55px;
+        left:5px;
+        background-color: transparent;
+        border-radius: 100%;     
+    }
+    .yesBtnActive{
+        position: absolute;
+        top:55px;
+        left:151px;
+        border-radius: 100%;
+        background-color: transparent;
+    }
 }

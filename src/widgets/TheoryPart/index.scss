@@ -24,31 +24,5 @@
         padding: 20px 10px;
         box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
         backdrop-filter: blur(10px);
-        button{
-            p{
-                margin: 0
-            }
-            color: rgb(0, 0, 0);
-            text-transform: capitalize;
-    
-            font-size: 24px;
-            font-family: 'Nunito';
-            font-weight: 500;
-    
-            position: fixed;
-            right: 50px;
-            bottom: 30px;
-            background-color: transparent;
-            opacity: 0.5;
-    
-            display: flex;
-            align-items: center;
-            gap: 12px;
-    
-            &:hover {
-                opacity: 0.8;
-                transform: translateY(-1px);
-              }
-        }
     }
 }

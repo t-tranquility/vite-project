@@ -1,0 +1,16 @@
+.wrapper-card{
+    background-color: #ffe1b78a;
+    border-radius: 20px;
+    border: 1px solid #ffd498;
+    color:#5b3f18;
+    font-size: 24px;
+    font-family: 'Nunito';
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: space-evenly;
+    text-align: center;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+}

@@ -1,16 +1,13 @@
-import './index.scss';
-import GameCard from '../../widgets/GameCard';
-import UserInfo from '../../widgets/UserInfo';
+import '../styles/index.scss';
 
-function Game() {
+import { GameCard } from '../../widgets/GameCard';
+import { UserInfo } from '../../widgets/UserInfo';
+
+export function Game() {
   return (
-    <>
-      <div className='greeting-background'>
-        <GameCard />
-        <UserInfo />
-      </div>
-    </>
+    <div className='bank-background'>
+      <GameCard />
+      <UserInfo />
+    </div>
   );
 }
-
-export default Game;

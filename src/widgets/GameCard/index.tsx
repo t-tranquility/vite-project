@@ -3,10 +3,10 @@ import { useState } from 'react';
 
 import { Link } from 'react-router-dom';
 
-import nextBtn from '../../assets/nextBtn.png';
-import BankCard from '../BankCard';
+import { BankCard } from '../BankCard';
+import { NextBtn } from '../NextBtn';
 
-function GameCard() {
+export function GameCard() {
   const cardDataArray = [
     { id: 1, content: 'Банк платит проценты вкладчикам', isCorrect: true },
     { id: 2, content: 'Банк продает деньги, которые вышли из употребления', isCorrect: false },
@@ -26,7 +26,7 @@ function GameCard() {
 
   return (
     <>
-      <div className='wrapper-game-card'>
+      <div className='wrapper-game-card wrapper-card'>
         <div className='header-game-card'>
           <div className='header-game-card-left'>
             <p className='header_name-game-card'>Правда или ложь</p>
@@ -51,13 +51,8 @@ function GameCard() {
         </div>
       </div>
       <Link to='/result'>
-        <button>
-          <p>далее</p>
-          <img src={nextBtn} width={25} alt='next' />
-        </button>
+        <NextBtn />
       </Link>
     </>
   );
 }
-
-export default GameCard;

@@ -1,9 +1,9 @@
 import './index.scss';
 import { Link } from 'react-router-dom';
-function ResultCard() {
+export function ResultCard() {
   return (
     <>
-      <div className='wrapper-result'>
+      <div className='wrapper-result wrapper-card'>
         <div className='header-result-card'>
           <p>Результат</p>
         </div>
@@ -19,5 +19,3 @@ function ResultCard() {
     </>
   );
 }
-
-export default ResultCard;

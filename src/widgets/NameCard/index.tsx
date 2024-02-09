@@ -2,17 +2,23 @@ import './index.scss';
 import { useState } from 'react';
 
 import { Link } from 'react-router-dom';
-function NameCard() {
+
+import { useStore } from '../../shared/Store';
+
+export function NameCard() {
   const [isVisible, setIsVisible] = useState(!localStorage.getItem('username'));
   const [username, setUsername] = useState('');
+  const myStore = useStore();
 
   const handleSubmit = () => {
     setIsVisible(false);
     localStorage.setItem('username', username);
+    myStore.setUserName(username);
   };
-  const handleNameChange = (event) => {
+  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(event.target.value);
   };
+  console.log(myStore);
   return (
     <>
       {isVisible && (
@@ -38,5 +44,3 @@ function NameCard() {
     </>
   );
 }
-
-export default NameCard;
