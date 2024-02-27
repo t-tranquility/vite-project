@@ -1,16 +1,12 @@
 import './index.scss';
 import { useState } from 'react';
 
-import { Link } from 'react-router-dom';
-
 import { userService } from '../../shared/services/user.service';
-import { useStore } from '../../shared/Store';
 
 export function NameCard() {
   const [isVisible, setIsVisible] = useState(!localStorage.getItem('username'));
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const myStore = useStore();
   const connection = userService();
 
   const handleLogin = async () => {
