@@ -1,69 +1,75 @@
 import './index.scss';
 import { useState } from 'react';
 
-import { userService } from '../../shared/services/user.service';
+import { useForm } from 'react-hook-form';
+
+import { useUserService } from '../../shared/services/useUser.service';
+
+type FormValues = {
+  username: string;
+  password: string;
+};
 
 export function NameCard() {
-  const [isVisible, setIsVisible] = useState(!localStorage.getItem('username'));
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const connection = userService();
+  const { register, handleSubmit } = useForm<FormValues>();
 
-  const handleLogin = async () => {
-    setIsVisible(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const { loginUser, registerUser, error } = useUserService();
 
-    try {
-      await connection.sendUserName(username, password);
-    } catch (error) {
-      console.error('Login error:', error);
+  const onSubmit: SubmitHandler<FormValues> = (
+    data: { username: string; password: string },
+    e: { nativeEvent: { submitter: { name: string } } },
+  ) => {
+    if (e.nativeEvent.submitter.name === 'signIn') {
+      loginUser(data.username, data.password);
+      if (!error) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+    } else if (e.nativeEvent.submitter.name === 'signUp') {
+      registerUser(data.username, data.password);
+      if (!error) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
     }
-  };
-
-  const handleRegister = async () => {
-    setIsVisible(false);
-
-    try {
-      await connection.registerUser(username, password);
-    } catch (error) {
-      console.error('Registration error:', error);
-    }
-  };
-
-  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setUsername(event.target.value);
-  };
-
-  const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(event.target.value);
-  };
+  }; // переписать через try catch
 
   return (
     <>
       {isVisible && (
         <div className='wrapper-name'>
-          <div className='login-box'>
-            <h2>Login</h2>
-            <form>
-              <div className='user-box'>
-                <input type='text' name='' required onChange={handleNameChange} />
-                <label htmlFor='username'>Username</label>
+          <form className='login-box' onSubmit={handleSubmit(onSubmit)}>
+            <div className='user-box'>
+              <input
+                type='text'
+                placeholder='Username'
+                {...register('username', { required: true, max: 20, min: 3, maxLength: 20 })}
+              />
+            </div>
+            <div className='user-box'>
+              <input
+                type='password'
+                placeholder='Password'
+                {...register('password', { required: true, max: 20, min: 8, maxLength: 20 })}
+              />
+            </div>
+            {error && <div className='error-message'>{error}</div>}
+            <div className='wrap-btn'>
+              <div>
+                <button className='btn-for-nameCard' type='submit' name='signIn'>
+                  Sign In
+                </button>
               </div>
-              <div className='user-box'>
-                <input type='password' name='' required onChange={handlePasswordChange} />
-                <label htmlFor='password'>Password</label>
+              <div>
+                <button className='btn-for-nameCard' type='submit' name='signUp'>
+                  Sign Up
+                </button>
               </div>
-              <div className='wrap-btn'>
-                <div>
-                  <button onClick={handleLogin}>login</button>
-                </div>
-                <br />
-                <br />
-                <div>
-                  <button onClick={handleRegister}>register</button>
-                </div>
-              </div>
-            </form>
-          </div>
+            </div>
+          </form>
         </div>
       )}
     </>

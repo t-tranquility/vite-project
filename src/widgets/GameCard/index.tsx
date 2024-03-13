@@ -1,28 +1,13 @@
 import './index.scss';
-import { useState } from 'react';
 
 import { Link } from 'react-router-dom';
 
+import { useGameStore } from '../../shared/services/useScore.service';
 import { BankCard } from '../BankCard';
 import { NextBtn } from '../NextBtn';
 
 export function GameCard() {
-  const cardDataArray = [
-    { id: 1, content: 'Банк платит проценты вкладчикам', isCorrect: true },
-    { id: 2, content: 'Банк продает деньги, которые вышли из употребления', isCorrect: false },
-    { id: 3, content: 'Банк дает возможность получить виртуальную карту', isCorrect: true },
-    { id: 4, content: 'Банк может хранить ваши ценные бумаги', isCorrect: true },
-    { id: 5, content: 'Банк продает лотерейные билеты', isCorrect: false },
-  ];
-
-  const [totalResult, setTotalResult] = useState(0);
-
-  const updateResult = (isCorrect: boolean) => {
-    if (isCorrect) {
-      setTotalResult((prevResult) => prevResult + 1);
-    }
-  };
-  console.log(totalResult);
+  const { currentQuestionIndex, questions } = useGameStore();
 
   return (
     <>
@@ -40,19 +25,16 @@ export function GameCard() {
           </div>
         </div>
         <div className='content-game-card'>
-          {cardDataArray.map((cardData) => (
-            <BankCard
-              key={cardData.id}
-              content={cardData.content}
-              isCorrect={cardData.isCorrect}
-              updateResult={updateResult}
-            />
+          {questions.map((question) => (
+            <BankCard key={question.id} content={question.content} currentQuestionIndex={currentQuestionIndex} />
           ))}
         </div>
       </div>
-      <Link to='/result'>
-        <NextBtn />
-      </Link>
+      {currentQuestionIndex === questions.length && (
+        <Link to='/result'>
+          <NextBtn />
+        </Link>
+      )}
     </>
   );
 }
