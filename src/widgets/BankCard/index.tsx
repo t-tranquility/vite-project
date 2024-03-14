@@ -10,26 +10,24 @@ import { useGameStore } from '../../shared/services/useScore.service';
 
 interface BankCardProps {
   content: string;
-  currentQuestionIndex: number;
+  questionId: number;
 }
 
-export const BankCard: React.FC<BankCardProps> = ({ content }) => {
+export const BankCard: React.FC<BankCardProps> = ({ content, questionId }) => {
   const [noBtnImage, setNoBtnImage] = useState(noBtn);
   const [yesBtnImage, setYesBtnImage] = useState(yesBtn);
-  const { addAnswer, nextQuestion, currentQuestionIndex } = useGameStore();
+  const { addAnswer } = useGameStore();
 
   const handleYesClick = () => {
     setNoBtnImage(noBtn);
     setYesBtnImage(yesBtnSelected);
-    addAnswer(currentQuestionIndex, true);
-    nextQuestion();
+    addAnswer(questionId, true);
   };
 
   const handleNoClick = () => {
     setNoBtnImage(noBtnSelected);
     setYesBtnImage(yesBtn);
-    addAnswer(currentQuestionIndex, false);
-    nextQuestion();
+    addAnswer(questionId, false);
   };
 
   return (

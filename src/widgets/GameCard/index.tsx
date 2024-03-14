@@ -7,7 +7,11 @@ import { BankCard } from '../BankCard';
 import { NextBtn } from '../NextBtn';
 
 export function GameCard() {
-  const { currentQuestionIndex, questions } = useGameStore();
+  const { questions, answers } = useGameStore();
+
+  const answeredQuestionsCount = answers.filter((answer) => answer.selectedAnswer).length;
+
+  console.log(answers, answeredQuestionsCount);
 
   return (
     <>
@@ -26,11 +30,11 @@ export function GameCard() {
         </div>
         <div className='content-game-card'>
           {questions.map((question) => (
-            <BankCard key={question.id} content={question.content} currentQuestionIndex={currentQuestionIndex} />
+            <BankCard key={question.id} content={question.content} questionId={question.id} />
           ))}
         </div>
       </div>
-      {currentQuestionIndex === questions.length && (
+      {answeredQuestionsCount === questions.length && (
         <Link to='/result'>
           <NextBtn />
         </Link>
