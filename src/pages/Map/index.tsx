@@ -5,7 +5,7 @@ import bank from '../../assets/bank1.png';
 import cur from '../../assets/cur.png';
 import house from '../../assets/house.png';
 import insur from '../../assets/insur.png';
-//import { NameCard } from '../../widgets/NameCard';
+import { NameCard } from '../../widgets/NameCard';
 import './index.scss';
 
 export function Map() {
@@ -40,10 +40,9 @@ export function Map() {
           </div>
         </div>
       </div>
-      {/* <div className='lolo'>
+      <div className='lolo'>
         <NameCard />
       </div>
-      */}
     </>
   );
 }

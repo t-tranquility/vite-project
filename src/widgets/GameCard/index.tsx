@@ -1,17 +1,34 @@
 import './index.scss';
 
+import { useEffect } from 'react';
+
 import { Link } from 'react-router-dom';
 
+import { submitAnswers } from '../../shared/services/submitAnswers.service';
+import { getQuestions } from '../../shared/services/useQuestions.service';
 import { useGameStore } from '../../shared/services/useScore.service';
 import { BankCard } from '../BankCard';
 import { NextBtn } from '../NextBtn';
 
 export function GameCard() {
-  const { questions, answers } = useGameStore();
+  const { questions, answers, setQuestions } = useGameStore();
 
-  const answeredQuestionsCount = answers.filter((answer) => answer.selectedAnswer).length;
+  useEffect(() => {
+    const fetchQuestions = async () => {
+      const questions = await getQuestions();
+      setQuestions(questions);
+    };
 
-  console.log(answers, answeredQuestionsCount);
+    fetchQuestions();
+  }, [setQuestions]);
+
+  useEffect(() => {
+    if (answers.length === questions.length) {
+      submitAnswers();
+    }
+  }, [answers, questions]);
+
+  console.log(answers, answers.length);
 
   return (
     <>
@@ -34,9 +51,9 @@ export function GameCard() {
           ))}
         </div>
       </div>
-      {answeredQuestionsCount === questions.length && (
+      {answers.length === questions.length && (
         <Link to='/result'>
-          <NextBtn />
+          <NextBtn onClick={submitAnswers} />
         </Link>
       )}
     </>
