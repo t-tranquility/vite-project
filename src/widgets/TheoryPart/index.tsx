@@ -9,7 +9,7 @@ import { NextBtn } from '../NextBtn';
 
 export const TheoryPart: FC<{ text: string }> = ({ text }) => {
   const splitText = useMemo(() => {
-    return text.split('.');
+    return text.split('/n');
   }, [text]);
 
   const navigate = useNavigate();
