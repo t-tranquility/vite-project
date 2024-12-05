@@ -2,18 +2,13 @@ import '../styles/index.scss';
 import cx from 'classnames';
 import { useParams } from 'react-router-dom';
 
+import { mockData } from './mockData';
 import { TheoryPart } from '../../widgets/TheoryPart';
 
-const mock: Record<string, string> = {
-  bank: `Банк — это место, где люди могут хранить свои деньги в безопасности. В банке работают специальные люди, которые помогают управлять деньгами. Люди могут приносить свои деньги в банк, чтобы они были в безопасности, и брать их обратно, когда им нужно. Банк также может давать деньги в долг, если людям нужно что-то купить, например, дом или машину. Потом эти люди возвращают деньги банку с небольшой доплатой, которая называется "проценты". Дальше мы более подробно узнаем как банк работает изнутри.`,
-  atm: 'Банкомат теория',
-  insurance: 'Страховая компания теория',
-  house: 'Личный бюджет теория',
-  currency: 'Обменник валют теория',
-};
+type Page = 'bank' | 'atm' | 'insurance' | 'house' | 'currency'; // Указываем допустимые значения
 
 export function Theory() {
-  const { page } = useParams();
+  const { page } = useParams<{ page: Page }>(); // Типизируем параметр
 
   if (!page) return <div>Loading</div>;
 
@@ -27,7 +22,7 @@ export function Theory() {
         cx({ 'currency-background': page === 'currency' })
       }
     >
-      {<TheoryPart text={mock[page]} />}
+      <TheoryPart text={mockData[page]} section={page} />
     </div>
   );
 }

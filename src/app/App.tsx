@@ -1,10 +1,11 @@
 import { Suspense, lazy } from 'react';
 
-import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import './App.css';
+import { GameSection } from '../pages/Game/GameSection';
 
-const Game = lazy(() => import('../pages/Game').then((module) => ({ default: module.Game })));
+// const Game = lazy(() => import('../pages/Game').then((module) => ({ default: module.Game })));
 const Greeting = lazy(() => import('../pages/Greeting').then((module) => ({ default: module.Greeting })));
 const Map = lazy(() => import('../pages/Map').then((module) => ({ default: module.Map })));
 const Result = lazy(() => import('../pages/Result').then((module) => ({ default: module.Result })));
@@ -25,14 +26,8 @@ const router = createBrowserRouter([
     element: <Theory />,
   },
   {
-    path: '/game',
-    element: <Outlet />,
-    children: [
-      {
-        path: '/game/bank',
-        element: <Game />,
-      },
-    ],
+    path: '/game/:section', // Добавлен параметр section
+    element: <GameSection />,
   },
   {
     path: '/result',

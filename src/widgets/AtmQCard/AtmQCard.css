@@ -1,0 +1,79 @@
+
+.header-game-card {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.header-game-card-left {
+  flex: 1;
+}
+
+.header-game-card-right {
+  text-align: right;
+}
+
+.header_name-game-card {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+
+.game-content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.question{
+    font-size: 32px;
+    font-weight: 600;
+    margin-top: 120px;
+    margin-bottom: 40px;
+}
+.question>h2{
+  margin-bottom: 50px;
+}
+
+.question>input{
+  border-radius: 10px;
+  width: 100%;
+  background-color: transparent;
+  border: 1px solid #ffd498;
+  color:#5b3f18;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  padding: 15px 25px;
+}
+
+.next-Btn{
+  p{
+      margin: 0
+  }
+  text-transform: capitalize;
+  border-radius: 20px;
+  background-color: #ffe1b78a !important; 
+  box-sizing: border-box;
+  border: 1px solid #ffd498;
+  color:#5b3f18;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  padding: 10px 15px;
+
+  font-size: 16px;
+  font-family: 'Nunito';
+  font-weight: 400;
+
+  background-color: transparent;
+  opacity: 0.8;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  &:hover {
+      opacity: 1;
+      transform: translateY(-1px);
+    }
+}
