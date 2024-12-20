@@ -7,7 +7,13 @@ import teacher from '../../assets/teacher.png';
 import { BackBtn } from '../BackBtn';
 import { NextBtn } from '../NextBtn';
 
-export const TheoryPart: FC<{ text: string }> = ({ text }) => {
+// Update TheoryPartProps to include all Page types
+interface TheoryPartProps {
+  text: string;
+  section: 'bank' | 'atm' | 'insurance' | 'house' | 'currency'; // Include all valid sections
+}
+
+export const TheoryPart: FC<TheoryPartProps> = ({ text, section }) => {
   const splitText = useMemo(() => {
     return text.split('/n');
   }, [text]);
@@ -20,8 +26,7 @@ export const TheoryPart: FC<{ text: string }> = ({ text }) => {
       if (prevIndex < splitText.length - 1) {
         return prevIndex + 1;
       } else {
-        // TODO: get from page
-        navigate('/game/bank');
+        navigate(`/game/${section}`); // Переход на соответствующий раздел
         return prevIndex;
       }
     });

@@ -1,34 +1,45 @@
 import './index.scss';
+import { useNavigate } from 'react-router-dom';
 
-import { useEffect } from 'react';
-
-import { Link } from 'react-router-dom';
-
-import { submitAnswers } from '../../shared/services/submitAnswers.service';
-import { getQuestions } from '../../shared/services/useQuestions.service';
 import { useGameStore } from '../../shared/services/useScore.service';
 import { BankCard } from '../BankCard';
 import { NextBtn } from '../NextBtn';
 
 export function GameCard() {
-  const { questions, answers, setQuestions } = useGameStore();
+  const { answers, setCorrectAnswersCount, setTotalQuestions } = useGameStore();
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchQuestions = async () => {
-      const questions = await getQuestions();
-      setQuestions(questions);
-    };
+  const questions = [
+    { id: 1, content: 'Банк платит проценты вкладчикам' },
+    { id: 2, content: 'Банк продаёт деньги, которые вышли из употребления' },
+    { id: 3, content: 'Банк даёт возможность получить виртуальную карту' },
+    { id: 4, content: 'Банк может хранить ваши ценные бумаги' },
+    { id: 5, content: 'Банк продаёт потерянные билеты' },
+  ];
 
-    fetchQuestions();
-  }, [setQuestions]);
+  const correctAnswers: Record<number, boolean> = {
+    1: true,
+    2: false,
+    3: true,
+    4: true,
+    5: false,
+  };
 
-  useEffect(() => {
-    if (answers.length === questions.length) {
-      submitAnswers();
-    }
-  }, [answers, questions]);
+  const calculateCorrectAnswers = () => {
+    let correctCount = 0;
+    answers.forEach(({ questionId, answer }) => {
+      if (correctAnswers[questionId] === answer) {
+        correctCount++;
+      }
+    });
+    setCorrectAnswersCount(correctCount);
+  };
 
-  console.log(answers, answers.length);
+  const handleNext = () => {
+    setTotalQuestions(questions.length);
+    calculateCorrectAnswers(); // This function will set correctAnswersCount
+    navigate('/result');
+  };
 
   return (
     <>
@@ -52,9 +63,9 @@ export function GameCard() {
         </div>
       </div>
       {answers.length === questions.length && (
-        <Link to='/result'>
-          <NextBtn onClick={submitAnswers} />
-        </Link>
+        <button onClick={handleNext}>
+          <NextBtn />
+        </button>
       )}
     </>
   );
