@@ -73,7 +73,6 @@ const AtmQCard = () => {
             type='text'
             value={userAnswers[currentQuestionIndex] || ''}
             onChange={handleAnswerChange}
-            maxLength={questions[currentQuestionIndex].answer.length}
             placeholder='Введите ваш ответ'
           />
         </div>
