@@ -30,6 +30,7 @@ export function GameCard() {
     answers.forEach(({ questionId, answer }) => {
       if (correctAnswers[questionId] === answer) {
         correctCount++;
+        console.log(correctCount);
       }
     });
     setCorrectAnswersCount(correctCount);
