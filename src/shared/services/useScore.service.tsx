@@ -1,29 +1,40 @@
 import { create } from 'zustand';
 
-interface Question {
-  id: number;
-  content: string;
-}
-
-interface Answer {
-  questionId: number;
-  selectedAnswer: boolean;
-}
-
 interface GameStore {
-  questions: Question[];
-  answers: Answer[];
-  setQuestions: (questions: Question[]) => void;
-  addAnswer: (questionId: number, selectedAnswer: boolean) => void;
+  answers: { questionId: number; answer: boolean }[];
+  correctAnswersCount: number;
+  sunCount: number;
+  totalQuestions: number; // Количество вопросов
+  addAnswer: (questionId: number, answer: boolean) => void;
+  setCorrectAnswersCount: (count: number) => void;
+  setSunCount: (count: number) => void;
+  setTotalQuestions: (count: number) => void; // Функция для обновления количества вопросов
+  incrementSunCount: () => void;
 }
 
 export const useGameStore = create<GameStore>((set) => ({
-  questions: [],
   answers: [],
-  setQuestions: (questions) => set({ questions }),
-
-  addAnswer: (questionId, selectedAnswer) =>
+  correctAnswersCount: 0,
+  sunCount: 0,
+  totalQuestions: 0, // Инициализация общего количества вопросов
+  addAnswer: (questionId, answer) =>
     set((state) => ({
-      answers: [...state.answers.filter((answer) => answer.questionId !== questionId), { questionId, selectedAnswer }],
+      answers: [...state.answers, { questionId, answer }],
+    })),
+  setCorrectAnswersCount: (count) =>
+    set(() => ({
+      correctAnswersCount: count,
+    })),
+  setSunCount: (count) =>
+    set(() => ({
+      sunCount: count,
+    })),
+  setTotalQuestions: (count) =>
+    set(() => ({
+      totalQuestions: count, // Обновление количества вопросов
+    })),
+  incrementSunCount: () =>
+    set((state) => ({
+      sunCount: state.sunCount + 1,
     })),
 }));

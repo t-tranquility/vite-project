@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Link } from 'react-router-dom';
 
@@ -8,9 +8,11 @@ import cur from '../../assets/cur.png';
 import house from '../../assets/house.png';
 import insur from '../../assets/insur.png';
 import './index.scss';
+import { NameCard } from '../../widgets/NameCard';
 
 export function Map() {
   const [showMessage, setShowMessage] = useState<string | null>(null);
+  const [showRegistration, setShowRegistration] = useState(false);
 
   // Функция для отображения сообщения
   const handleMouseEnter = (level: string) => {
@@ -22,8 +24,23 @@ export function Map() {
     setShowMessage(null);
   };
 
+  // Проверяем, нужно ли показывать регистрацию
+  useEffect(() => {
+    const isRegistrationShown = localStorage.getItem('registrationShown');
+    if (!isRegistrationShown) {
+      setShowRegistration(true);
+    }
+  }, []);
+
+  // Обрабатываем закрытие формы регистрации
+  const handleRegistrationClose = () => {
+    setShowRegistration(false);
+    localStorage.setItem('registrationShown', 'true');
+  };
+
   return (
     <>
+      {showRegistration && <NameCard onClose={handleRegistrationClose} />}
       <div className='map-background'>
         <div className='wrapper-map'>
           <div className='bankBtn'>

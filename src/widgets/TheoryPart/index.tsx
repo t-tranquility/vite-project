@@ -7,9 +7,10 @@ import teacher from '../../assets/teacher.png';
 import { BackBtn } from '../BackBtn';
 import { NextBtn } from '../NextBtn';
 
+// Update TheoryPartProps to include all Page types
 interface TheoryPartProps {
   text: string;
-  section: 'bank' | 'atm' | 'insurance'; // Допустимые значения разделов
+  section: 'bank' | 'atm' | 'insurance' | 'house' | 'currency'; // Include all valid sections
 }
 
 export const TheoryPart: FC<TheoryPartProps> = ({ text, section }) => {

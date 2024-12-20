@@ -20,15 +20,15 @@ export const useUserService = create<UserData>((set) => ({
       const response = await axios.post(`${dburl}/auth/login`, { username, password });
       localStorage.setItem('accessToken', response.data.access_token);
       set({ response: response.data, error: null, access_token: response.data.access_token }); //сюда вместо аксес токена юзера бахнуть
-    } catch (error) {
+    } catch (error: any) {
       set({ response: error.response.data, error: error.response.data.message, access_token: null });
     }
   }, //isvisible сюда можно
   registerUser: async (username: string, password: string) => {
     try {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const response = await axios.post(`${dburl}/auth/signup`, { username, password });
-    } catch (error) {
+      localStorage.setItem('accessToken', response.data.access_token);
+    } catch (error: any) {
       set({ response: error.response.data, error: error.response.data.message, access_token: null });
     }
   },

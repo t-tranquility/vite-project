@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import './AtmQCard.css';
+import { useState } from 'react';
 
 import { Link } from 'react-router-dom';
-import './AtmQCard.css';
+
+import { useGameStore } from '../../shared/services/useScore.service';
 
 // Пример вопросов и ответов (обновлённые)
 const questions = [
@@ -18,28 +20,36 @@ const questions = [
 ];
 
 const AtmQCard = () => {
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0); // Индекс текущего вопроса
-  const [userAnswers, setUserAnswers] = useState([]); // Массив ответов пользователя
-  const [isSubmitted, setIsSubmitted] = useState(false); // Флаг завершения игры
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [userAnswers, setUserAnswers] = useState<string[]>([]);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [correctAnswersCount, setCorrectAnswersCount] = useState(0);
 
-  const handleAnswerChange = (event: { target: { value: string } }) => {
+  const { setSunCount } = useGameStore(); // Извлекаем функцию setSunCount из Zustand
+
+  const handleAnswerChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newAnswers = [...userAnswers];
-    newAnswers[currentQuestionIndex] = event.target.value.toUpperCase(); // Сохраняем ответ
+    newAnswers[currentQuestionIndex] = event.target.value.toUpperCase();
     setUserAnswers(newAnswers);
   };
 
   const handleNextQuestion = () => {
-    // Переход к следующему вопросу независимо от правильности ответа
     if (currentQuestionIndex + 1 < questions.length) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
-      setIsSubmitted(true); // Если вопросы закончены, переключаем на страницу с результатами
+      setIsSubmitted(true);
     }
   };
 
   const submitAnswers = () => {
-    // Здесь можно обработать ответы, например, посчитать количество правильных
-    console.log('Ответы пользователя:', userAnswers);
+    let correctCount = correctAnswersCount;
+    questions.forEach((q, index) => {
+      if (userAnswers[index] === q.answer) {
+        correctCount++;
+      }
+    });
+    setCorrectAnswersCount(correctCount);
+    setSunCount(correctCount); // Store sun count based on correct answers
   };
 
   return (
